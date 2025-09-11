@@ -190,7 +190,7 @@ namespace FFPACK {
             elt* Ai, *Xi, *X2=X;
             size_t Ncurr=N;
             charp.clear();
-            size_t nbfac = 0;
+//             size_t nbfac = 0;
 
             while (Ncurr > 0){
 
@@ -215,7 +215,7 @@ namespace FFPACK {
                         k = Ncurr;
                     }
                 }
-                nbfac++;
+//                 nbfac++;
                 charp.push_front (minP);
                 if (k==Ncurr){
                     FFLAS::fflas_delete( P);

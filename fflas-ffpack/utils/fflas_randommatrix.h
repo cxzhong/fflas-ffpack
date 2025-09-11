@@ -494,7 +494,7 @@ namespace FFPACK{
 
     // O(1)
     // estimate what rank a submatrix is able to reach given the current configuration of the algorithm
-    size_t valuate(int ti, int r, int n, int i, int Is_pivot_not_moved,int nb_pivot_after_i, int nb_pivot_bf_i, int nb_pivot_after_i_not_moved, int nb_pivot_before_i_not_moved) {
+    inline size_t valuate(int ti, int r, int n, int i, int Is_pivot_not_moved,int nb_pivot_after_i, int nb_pivot_bf_i, int nb_pivot_after_i_not_moved, int nb_pivot_before_i_not_moved) {
         // Compute the valuation of a given leading submatrix ti
             return ti + std::min(i + 1 - nb_pivot_bf_i, nb_pivot_after_i_not_moved - Is_pivot_not_moved) +
                         std::min(n - (i + 1) - nb_pivot_after_i, nb_pivot_before_i_not_moved - Is_pivot_not_moved);
@@ -507,7 +507,7 @@ namespace FFPACK{
      * @param [out] rows
      * @param [out] cols
     */
-    void RandomLTQSRankProfileMatrix (size_t n, size_t r, size_t t, size_t* rows, size_t* cols) {
+    inline void RandomLTQSRankProfileMatrix (size_t n, size_t r, size_t t, size_t* rows, size_t* cols) {
 
         // if (r <= 0 || n <= 0 || t <= 0) {
         //     std::cout << "care, all the arguments must be positive" << std::endl;
@@ -570,7 +570,7 @@ namespace FFPACK{
         }
 
         /// loop initialisation
-        size_t loop = 0;
+//         size_t loop = 0;
         std::vector<size_t> valid_moves;
         size_t start_up=0;
         int ilim, jlim;
@@ -696,7 +696,7 @@ namespace FFPACK{
 
                 H[prev_i] = 0;
 
-                ++loop;
+//                 ++loop;
                 if (prev_h != h) {
                     prev_h = h;
                 }
@@ -713,7 +713,7 @@ namespace FFPACK{
                 availablerows[prev_i] = true;
                 availablerows[new_i] = false;
             }
-            ++loop;
+//             ++loop;
             ++h;
         }
         FFLAS::fflas_delete (H);

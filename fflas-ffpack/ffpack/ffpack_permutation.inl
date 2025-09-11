@@ -57,7 +57,9 @@ namespace FFPACK {
 
         std::vector<bool> ispiv(lenP,false);
         size_t pivrowstomove = 0;
+#if defined MONOTONIC_MOREPIVOTS
         size_t nonpivrowstomove = 0;
+#endif
         size_t maxpiv = R-1;
         for (size_t i=0; i<R; i++) {
             ispiv[MathP[i]] = true;
@@ -69,9 +71,11 @@ namespace FFPACK {
         if (!pivrowstomove) // Permutation is the identity
             return;
 
+#if defined MONOTONIC_MOREPIVOTS
         for (size_t i=R; i<lenP; i++)
             if (MathP[i] != i)
                 nonpivrowstomove++;
+#endif
         size_t NB = M/B;
         size_t last = M%B;
         size_t incA, llda;
